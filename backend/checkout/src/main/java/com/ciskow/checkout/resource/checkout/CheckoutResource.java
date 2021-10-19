@@ -1,28 +1,22 @@
 package com.ciskow.checkout.resource.checkout;
 
-import com.ciskow.checkout.event.CheckoutCreatedEvent;
-import com.ciskow.checkout.streaming.CheckoutCreatedSource;
+import com.ciskow.checkout.service.CheckoutServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/checkout")
+@RequestMapping("/v1/checkout")
 @RequiredArgsConstructor
 public class CheckoutResource {
 
-    private final CheckoutCreatedSource checkoutCreatedSource;
+    private final CheckoutServiceImpl checkoutService;
 
     @PostMapping("/")
-    public ResponseEntity<Void> create() {
-        final CheckoutCreatedEvent checkoutCreatedEvent = CheckoutCreatedEvent.newBuilder()
-                .setCheckoutCode("123")
-                .build();
-//        checkoutCreatedSource.output().send(MessageBuilder.withPayload("asdasdasd").build());
-        checkoutCreatedSource.output().send(MessageBuilder.withPayload(checkoutCreatedEvent).build());
+    public ResponseEntity<Void> create(CheckoutRequest checkoutRequest) {
+        checkoutService.create(checkoutRequest);
         return ResponseEntity.ok().build();
     }
 }
