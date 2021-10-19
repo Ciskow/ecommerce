@@ -1,9 +1,13 @@
-package com.ciskow.checkout.repository;
+package com.ciskow.ecommerce.checkout.repository;
 
-import com.ciskow.checkout.entity.CheckoutEntity;
+import com.ciskow.ecommerce.checkout.entity.CheckoutEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CheckoutRepository extends JpaRepository<CheckoutEntity, Long> {
+
+    Optional<CheckoutEntity> findByCode(String code);
 }

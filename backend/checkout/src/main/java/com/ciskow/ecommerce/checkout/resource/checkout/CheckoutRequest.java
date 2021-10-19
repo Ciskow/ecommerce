@@ -1,10 +1,11 @@
-package com.ciskow.checkout.resource.checkout;
+package com.ciskow.ecommerce.checkout.resource.checkout;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +27,6 @@ public class CheckoutRequest implements Serializable {
     private String cardNumber;
     private String cardDate;
     private String cardCvv;
+    private List<String> products;
 }
+

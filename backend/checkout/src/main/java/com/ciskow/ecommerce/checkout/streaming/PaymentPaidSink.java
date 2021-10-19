@@ -1,4 +1,4 @@
-package com.ciskow.checkout.streaming;
+package com.ciskow.ecommerce.checkout.streaming;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
